@@ -1,68 +1,169 @@
-# College AI Helpdesk
 
-An NLP-based AI assistant designed to help college students with common academic and administrative queries.
+College AI Helpdesk
 
-## Overview
+An AI-powered student support chatbot built using Natural Language Processing and Machine Learning.
 
-College AI Helpdesk is a machine learning based chatbot developed to provide quick and accessible responses to common student questions.
+College AI Helpdesk is a web-based chatbot designed to assist students with common college-related queries. The project combines NLP-based intent classification with a Flask web application to provide relevant and automated responses.
 
-The project also explores an incremental model development approach using multiple model versions. Instead of retraining the complete system from scratch for every improvement, new versions are developed by targeting specific weaknesses and adding relevant training data.
+The project also serves as an experimental platform for studying incremental model improvement through multiple model versions.
 
-## Key Features
+Project Highlights
+NLP-based student query classification
+Automated responses for common college queries
+Multiple machine learning model versions
+Flask-based web application
+Custom training dataset
+Separate model and vectorizer files
+Version-based model improvement
+Experimentation with targeted training data
+Model Development
 
-- Natural Language Processing based intent classification
-- Automated responses to common student queries
-- Multiple model versions for experimentation
-- Flask-based web application
-- Machine learning model and vectorizer integration
-- Expandable intent and training-data structure
+A major focus of this project is understanding how an existing model can be improved without unnecessarily rebuilding the entire system.
 
-## Model Development
+V1 — Baseline Model
 
-The project currently follows a version-based development approach:
+The first version establishes the initial chatbot and provides the baseline performance for future experiments.
 
-| Version | Purpose |
-|---------|---------|
-| V1 | Initial baseline model |
-| V2 | Model improvement with additional data |
-| V3 | Further refinement of targeted intents |
+V2 — Incremental Improvement
 
-The main objective is to evaluate whether incremental training can improve weak intents while preserving the performance of previously learned intents.
+The second version introduces additional training data targeting areas where the baseline model requires improvement.
 
-## Research Direction
+V3 — Further Refinement
 
-This project is also an experiment in practical AI model improvement.
+The third version continues the improvement process by focusing on weaker or confusing intents while attempting to preserve previously learned capabilities.
 
-The major questions being explored are:
+Experimental Goal
 
-- Can targeted data improve weak intents effectively?
-- Can model performance be improved without completely rebuilding the training pipeline?
-- Does incremental training affect previously learned intents?
-- Can this approach reduce unnecessary retraining?
-- How can catastrophic forgetting be identified and evaluated?
+The V1 → V2 → V3 approach is being used to investigate:
 
-## Technology Stack
-
-- Python
-- Flask
-- Scikit-learn
-- Natural Language Processing
-- HTML
-- CSS
-- JavaScript
-
-## Project Structure
-
-```text
+Whether targeted data can improve weak intents
+Whether previous knowledge can be preserved during improvement
+The effect of incremental training on model performance
+The possibility of catastrophic forgetting
+Whether incremental development can reduce unnecessary retraining
+System Architecture
+User
+  │
+  ▼
+Web Interface
+  │
+  ▼
+Flask Application
+  │
+  ▼
+Text Preprocessing
+  │
+  ▼
+Vectorizer
+  │
+  ▼
+ML Intent Classifier
+  │
+  ▼
+Predicted Intent
+  │
+  ▼
+Response
+Technology Stack
+Category	Technologies
+Programming	Python
+Machine Learning	Scikit-learn
+NLP	Text preprocessing, intent classification
+Backend	Flask
+Frontend	HTML, CSS, JavaScript
+Model Storage	Pickle
+Development	VS Code, Git, GitHub
+Project Structure
 College-AI-Helpdesk/
 │
 ├── app.py
+│
 ├── models/
 │   ├── v1/
+│   │   ├── chatbot_v1_model.pkl
+│   │   └── chatbot_v1_vectorizer.pkl
+│   │
 │   ├── v2/
+│   │   ├── chatbot_v2_model.pkl
+│   │   └── chatbot_v2_vectorizer.pkl
+│   │
 │   └── v3/
+│       ├── chatbot_v3_model.pkl
+│       └── chatbot_v3_vectorizer.pkl
+│
+├── dataset/
 │
 ├── templates/
+│   └── index.html
+│
 ├── static/
-├── dataset/
+│
+├── requirements.txt
+│
 └── README.md
+Installation
+
+Clone the repository:
+
+git clone https://github.com/priyanshukumarverma091-hub/College-AI-Helpdesk.git
+
+Move into the project directory:
+
+cd College-AI-Helpdesk
+
+Install dependencies:
+
+pip install -r requirements.txt
+Run the Application
+
+Start the Flask application:
+
+python app.py
+
+Then open:
+
+http://127.0.0.1:5000
+Current Development
+
+The project is currently under active development.
+
+The main focus is improving the chatbot's ability to correctly identify different student queries, especially intents that are difficult or easily confused with one another.
+
+Model versions are being tested against similar queries to understand how performance changes after each training stage.
+
+Future Work
+Expand the training dataset
+Improve difficult intents
+Add multilingual support
+Improve conversational responses
+Create systematic V1/V2/V3 evaluation
+Analyze catastrophic forgetting
+Add more college-specific knowledge
+Improve model reliability
+Deploy the chatbot for real-world student use
+Research Perspective
+
+This project represents a practical exploration of efficient machine learning development.
+
+Rather than assuming that every improvement requires complete retraining, the project investigates whether models can be developed progressively by identifying weaknesses and adding targeted data.
+
+The long-term objective is to better understand the trade-offs between:
+
+Incremental Training → Model Improvement → Knowledge Preservation → Training Efficiency
+
+Author
+
+Priyanshu Kumar Verma
+
+Computer Science Engineering Student
+
+Interests:
+
+Artificial Intelligence
+Machine Learning
+Natural Language Processing
+Computer Vision
+AI Research
+License
+
+This project is intended for educational and research purposes.
