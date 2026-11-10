@@ -1,297 +1,198 @@
-# College AI Helpdesk
+<div align="center">
 
-### AI-Powered College Information & Student Support Assistant
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F172A,50:2563EB,100:06B6D4&height=220&section=header&text=College%20AI%20Helpdesk&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Intelligent%20Student%20Support%20System&descAlignY=58&descSize=17" width="100%"/>
 
-**College AI Helpdesk** is an AI-powered student assistance system designed to provide quick and context-aware answers to common college-related queries.
+<br/>
 
-The system combines **Natural Language Processing, Large Language Models, and Retrieval-Augmented Generation (RAG)** to make institutional information easier for students to access.
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=18&duration=3000&pause=1000&color=38BDF8&center=true&vCenter=true&width=650&lines=Making+College+Information+Accessible.;Powered+by+NLP+%2B+LLMs+%2B+RAG.;Ask.+Retrieve.+Understand.+Learn." />
+
+<br/><br/>
+
+**An AI-powered conversational assistant designed to simplify how students access college information.**
+
+<br/>
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![AI](https://img.shields.io/badge/Artificial_Intelligence-7C3AED?style=for-the-badge)
+![RAG](https://img.shields.io/badge/RAG-06B6D4?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active_Development-22C55E?style=for-the-badge)
+
+<br/>
+
+[Overview](#-overview) · [Architecture](#-system-architecture) · [Features](#-key-features) · [Installation](#-getting-started) · [Future Scope](#-future-scope)
+
+</div>
 
 ---
 
-## Overview
+## ◈ Overview
 
-Students frequently need information about:
+College AI Helpdesk is an AI-powered student assistance system that provides quick and context-aware answers to common college-related questions.
 
-* Admissions
-* Courses
-* Departments
-* Faculty
-* Examinations
-* Timetables
-* Fees
-* Scholarships
-* Campus facilities
-* Academic procedures
-* College rules
-* Important contacts
+College information is often scattered across PDFs, notices, websites, academic documents and administrative resources.
 
-Traditional helpdesk systems often require students to manually search through notices, documents, websites, or contact administrative staff.
+Finding the right information shouldn't require searching through dozens of documents.
 
-The College AI Helpdesk provides a conversational interface where students can ask questions in natural language.
+**The idea is simple: One conversational interface. Multiple sources of college information.**
 
-```text
-Student Query
-      │
-      ▼
-Query Understanding
-      │
-      ▼
-Knowledge Retrieval
-      │
-      ▼
-Relevant College Information
-      │
-      ▼
-LLM Response Generation
-      │
-      ▼
-Context-Aware Answer
+The system combines:
+
+- Natural Language Processing (NLP)
+- Large Language Models (LLMs)
+- Retrieval-Augmented Generation (RAG)
+- College-specific Knowledge Base
+- Intent Classification
+
+Instead of depending entirely on pretrained model knowledge, the system retrieves relevant institutional information before generating responses.
+
+---
+
+## ◈ The Problem
+
+Students regularly need information about:
+
+| Category | Information |
+|---|---|
+| Admissions | Eligibility, application procedures |
+| Academics | Courses, departments, faculty |
+| Examinations | Examination-related information |
+| Administration | Fees, rules and procedures |
+| Student Services | Scholarships and facilities |
+| Campus | Infrastructure and important contacts |
+
+Information exists, but accessing it efficiently is the challenge.
+
+## ◈ The Solution
+
+College AI Helpdesk aims to become a centralized conversational interface for institutional information.
+
+**Ask a question → Retrieve relevant information → Generate a grounded response.**
+
+---
+
+## ◈ System Architecture
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0F172A&height=3&section=header" width="80%"/>
+
+```mermaid
+flowchart TD
+    A["🎓 Student"] --> B["💬 Chat Interface"]
+    B --> C["🧠 Query Understanding"]
+    C --> D["🔍 Knowledge Retriever"]
+    D --> E[("📚 College Knowledge Base")]
+    E --> F["📄 Relevant Context"]
+    F --> G["🤖 Language Model"]
+    G --> H["✨ Context-Aware Answer"]
+
+    style A fill:#172554,color:#fff
+    style B fill:#1E3A8A,color:#fff
+    style C fill:#312E81,color:#fff
+    style D fill:#164E63,color:#fff
+    style E fill:#134E4A,color:#fff
+    style F fill:#155E75,color:#fff
+    style G fill:#4C1D95,color:#fff
+    style H fill:#166534,color:#fff
 ```
 
----
+</div>
 
-# Problem Statement
+### How it works
 
-College information is often distributed across multiple sources such as:
-
-* PDFs
-* Notices
-* Websites
-* Academic documents
-* Department information
-* Administrative resources
-
-Students may spend significant time finding the correct information.
-
-The goal of this project is to build an AI assistant that can act as a **single conversational interface for college-related information**.
+1. Student submits a natural-language question.
+2. The system processes and understands the query.
+3. Relevant information is retrieved from the college knowledge base.
+4. Retrieved information is converted into context.
+5. The language model generates a response using that context.
+6. The student receives a context-aware answer.
 
 ---
 
-# Solution
+## ◈ Retrieval-Augmented Generation (RAG)
 
-The system uses a combination of:
+RAG is the central concept behind this project.
 
-**NLP + LLM + RAG + College Knowledge Base**
+Rather than asking an LLM to answer everything using only its pretrained knowledge, the system first retrieves relevant college-specific information.
 
-Instead of relying entirely on the language model's pretrained knowledge, the system retrieves relevant information from a college-specific knowledge base before generating an answer.
+```mermaid
+flowchart TD
+    A["User Question"] --> B["Query Embedding"]
+    B --> C["Similarity Search"]
+    C --> D["Relevant Documents"]
+    D --> E["Context Construction"]
+    E --> F["Language Model"]
+    F --> G["Grounded Answer"]
 
-This helps keep responses grounded in the available institutional information.
-
----
-
-# Architecture
-
-```text
-                         Student
-                            │
-                            ▼
-                    ┌───────────────┐
-                    │  Chat Interface│
-                    └───────┬───────┘
-                            │
-                            ▼
-                    Query Processing
-                            │
-                            ▼
-                    ┌───────────────┐
-                    │   Retriever   │
-                    └───────┬───────┘
-                            │
-                            ▼
-                  College Knowledge Base
-                            │
-                            ▼
-                    Relevant Context
-                            │
-                            ▼
-                    ┌───────────────┐
-                    │      LLM      │
-                    └───────┬───────┘
-                            │
-                            ▼
-                     Final Response
+    style A fill:#1E3A8A,color:#fff
+    style B fill:#312E81,color:#fff
+    style C fill:#164E63,color:#fff
+    style D fill:#155E75,color:#fff
+    style E fill:#134E4A,color:#fff
+    style F fill:#4C1D95,color:#fff
+    style G fill:#166534,color:#fff
 ```
 
----
+**Example**
 
-# Retrieval-Augmented Generation
+Student asks:
 
-The core architecture uses **Retrieval-Augmented Generation (RAG)**.
+> What documents are required for admission?
 
-The workflow is:
-
-```text
-User Question
-     ↓
-Query Embedding
-     ↓
-Similarity Search
-     ↓
-Relevant Documents
-     ↓
-Context Construction
-     ↓
-Language Model
-     ↓
-Grounded Answer
-```
-
-For example:
-
-> "What documents are required for admission?"
-
-The system searches the college knowledge base for relevant admission information and provides that context to the language model before generating the response.
+The system searches the college knowledge base for relevant admission information and provides that context to the language model before generating an answer.
 
 ---
 
-# Knowledge Base
+## ◈ Key Features
 
-A dedicated college knowledge base was created to provide structured institutional information to the assistant.
+| Feature | Description |
+|---|---|
+| College-Specific Knowledge | Designed around institutional information |
+| Natural Language Interaction | Ask questions conversationally |
+| RAG-Based Responses | Retrieve relevant information before generation |
+| Intent Recognition | Identify the purpose of student queries |
+| Expandable Knowledge Base | Extend information as institutional data changes |
+| Conversational Interface | Interact through a chat-based interface |
 
-The knowledge base can contain information related to:
+### Supported Query Categories
 
-* College profile
-* Departments
-* Academic programs
-* Faculty
-* Admission
-* Examinations
-* Student services
-* Infrastructure
-* Rules and regulations
-* Contact information
-* Frequently asked questions
-
-The project also includes a large synthetic/structured conversational dataset for training and evaluation.
-
----
-
-# Intent Classification
-
-The earlier helpdesk architecture includes an intent-based NLP layer.
-
-Example intents include:
-
-```text
-Admission
-Course Information
-Faculty
-Examination
-Fees
-Scholarship
-Timetable
-Departments
-Facilities
-Contact Information
-General Queries
-```
-
-The system can identify the intent behind a student's question and route it to the appropriate response or retrieval workflow.
+- Admissions
+- Course Information
+- Faculty
+- Examinations
+- Scholarships
+- Timetables
+- Departments
+- Campus Facilities
+- Contact Information
+- General Queries
 
 ---
 
-# Dataset
+## ◈ Technology Stack
 
-The project uses a college-specific conversational dataset containing examples of:
+<div align="center">
 
-```text
-User Query
-     ↓
-Intent
-     ↓
-Response / Knowledge
-```
+| Layer | Technologies |
+|---|---|
+| Programming | Python |
+| Backend | Flask |
+| NLP | Python NLP Ecosystem |
+| Deep Learning | PyTorch / TensorFlow |
+| Machine Learning | Scikit-learn |
+| LLM | Language Model API / Local Model |
+| Retrieval | RAG |
+| Data Processing | Pandas |
+| Database | SQLite |
+| Frontend | HTML, CSS, JavaScript |
+| Version Control | Git & GitHub |
 
-A larger structured dataset was also developed to improve coverage across college-related queries.
-
-The dataset can be extended continuously as new student questions and institutional information become available.
-
----
-
-# Example Interaction
-
-### Student
-
-> What departments are available in the college?
-
-### AI Helpdesk
-
-The system identifies the query intent, retrieves relevant college information, and generates a context-aware response based on the available knowledge base.
+</div>
 
 ---
 
-### Student
-
-> How can I get information about examinations?
-
-### Pipeline
-
-```text
-Query
- ↓
-Intent Detection
- ↓
-Examination Information
- ↓
-Knowledge Retrieval
- ↓
-Context
- ↓
-LLM
- ↓
-Answer
-```
-
----
-
-# Key Features
-
-### College-Specific Knowledge
-
-The assistant is designed around institutional information rather than generic chatbot knowledge.
-
-### Natural Language Interaction
-
-Students can ask questions conversationally instead of searching manually through documents.
-
-### RAG-Based Responses
-
-Relevant information is retrieved before response generation.
-
-### Intent Recognition
-
-Queries can be categorized according to their underlying purpose.
-
-### Expandable Knowledge Base
-
-New documents and information can be added as the college's information changes.
-
-### Conversational Interface
-
-The system provides a simple chat-based experience for students.
-
----
-
-# Technology Stack
-
-| Component        | Technology                       |
-| ---------------- | -------------------------------- |
-| Programming      | Python                           |
-| NLP              | Python NLP ecosystem             |
-| Deep Learning    | PyTorch / TensorFlow             |
-| Machine Learning | scikit-learn                     |
-| LLM              | Language Model API / Local Model |
-| RAG              | Retrieval-Augmented Generation   |
-| Data Processing  | Pandas                           |
-| Backend          | Flask                            |
-| Database         | SQLite                           |
-| Frontend         | HTML, CSS, JavaScript            |
-| Development      | VS Code / Google Colab           |
-| Version Control  | Git / GitHub                     |
-
----
-
-# Project Structure
+## ◈ Project Structure
 
 ```text
 college-ai-helpdesk/
@@ -324,136 +225,161 @@ college-ai-helpdesk/
 
 ---
 
-# System Workflow
+## ◈ Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone YOUR_REPOSITORY_URL
+```
+
+### 2. Enter the Project Directory
+
+```bash
+cd college-ai-helpdesk
+```
+
+### 3. Create a Virtual Environment
+
+```bash
+python -m venv .venv
+```
+
+**Windows:**
+
+```bash
+.venv\Scripts\activate
+```
+
+**Linux / macOS:**
+
+```bash
+source .venv/bin/activate
+```
+
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Run the Application
+
+```bash
+python app.py
+```
+
+Open your browser and visit:
 
 ```text
-              ┌─────────────────┐
-              │   Student Query │
-              └────────┬────────┘
-                       ▼
-              ┌─────────────────┐
-              │ Query Processing │
-              └────────┬────────┘
-                       ▼
-              ┌─────────────────┐
-              │ Intent Detection│
-              └────────┬────────┘
-                       ▼
-              ┌─────────────────┐
-              │ Knowledge Search│
-              └────────┬────────┘
-                       ▼
-              ┌─────────────────┐
-              │ Relevant Context│
-              └────────┬────────┘
-                       ▼
-              ┌─────────────────┐
-              │      LLM        │
-              └────────┬────────┘
-                       ▼
-              ┌─────────────────┐
-              │   Final Answer  │
-              └─────────────────┘
+http://127.0.0.1:5000
+```
+
+*Note: The installation instructions assume the repository contains the documented files and that its dependencies are configured in requirements.txt.*
+
+---
+
+## ◈ Limitations
+
+The current prototype has some limitations:
+
+- Response quality depends on knowledge base completeness.
+- Institutional information requires regular updates.
+- LLM-generated administrative information needs verification.
+- Ambiguous questions may require clarification.
+- The prototype does not replace official administrative communication.
+
+For official deadlines, fees and examination information, students should verify answers against the latest official college communication.
+
+---
+
+## ◈ Future Scope
+
+The project has several possible directions for further development.
+
+| Area | Planned Extension |
+|---|---|
+| Communication | Voice-based assistance |
+| Language | Hindi-English conversational support |
+| Integration | College website integration |
+| Messaging | WhatsApp integration |
+| Knowledge | Automatic document indexing |
+| Retrieval | Semantic search across college documents |
+| Personalization | Student dashboards |
+| Intelligence | Agent-based academic assistance |
+| Platform | Mobile application |
+
+---
+
+## ◈ Research Direction
+
+This project can serve as a foundation for exploring domain-specific LLM and RAG systems for educational institutions.
+
+Potential research directions:
+
+- Retrieval accuracy
+- Hallucination reduction
+- Domain adaptation
+- Context management
+- Educational question-answering evaluation
+- Multilingual retrieval
+- Long-document question answering
+
+**Research Pipeline**
+
+```text
+College Knowledge Base
+        ↓
+     Retrieval
+        ↓
+     Reasoning
+        ↓
+ Grounded Generation
+        ↓
+  Student Assistance
 ```
 
 ---
 
-# Benefits
+## ◈ Project Status
 
-### For Students
+<div align="center">
 
-* Faster access to information
-* Conversational interaction
-* Reduced manual searching
-* Centralized information access
-
-### For College Administration
-
-* Reduced repetitive queries
-* Scalable student support
-* Centralized knowledge management
-* Potential integration with existing college systems
-
----
-
-# Limitations
-
-The current system has several limitations:
-
-1. Response quality depends on the completeness of the knowledge base.
-2. Institutional information must be regularly updated.
-3. LLM-generated responses require validation for high-stakes administrative information.
-4. Ambiguous questions may require clarification.
-5. The prototype is not a replacement for official administrative communication.
-
-For official deadlines, fees, policies, or examination information, students should verify the answer against the latest official college communication.
-
----
-
-# Future Scope
-
-The project can be extended with:
-
-* Voice-based student assistance
-* Multilingual support
-* Hindi-English conversational interaction
-* College website integration
-* WhatsApp integration
-* Document upload and automatic indexing
-* Real-time notice retrieval
-* Personalized student dashboards
-* Authentication
-* Semantic search across college documents
-* Agent-based academic assistance
-* Mobile application
-
----
-
-# Research Direction
-
-The project can serve as a foundation for exploring **domain-specific LLM and RAG systems for educational institutions**.
-
-Future research directions include:
-
-**College Knowledge Base → Retrieval → Reasoning → Grounded Generation**
-
-with additional focus on:
-
-* Retrieval accuracy
-* Hallucination reduction
-* Domain adaptation
-* Context management
-* Evaluation of educational QA systems
-* Multilingual retrieval
-* Long-document question answering
-
----
-
-# Project Status
-
-**Active Development**
+### 🟢 Active Development
 
 The project is currently being developed as a research-oriented prototype for college-specific AI assistance.
 
----
-
-# Author
-
-**Priyanshu Kumar Verma**
-
-AI/ML Researcher
-
-Interests:
-
-* Artificial Intelligence
-* Natural Language Processing
-* Large Language Models
-* Retrieval-Augmented Generation
-* Computer Vision
-* AI Research
+</div>
 
 ---
 
-## License
+## ◈ Author
 
-This project is intended for educational and research purposes. Refer to the repository license for terms of use and redistribution.
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0F172A&height=2" width="60%"/>
+
+### Priyanshu Kumar Verma
+
+**AI/ML Researcher**
+
+Interested in exploring and building systems around:
+
+`Artificial Intelligence` · `NLP` · `LLMs` · `RAG` · `Computer Vision` · `AI Research`
+
+<br/>
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/priyanshukumarverma091-hub)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/priyanshu-kumar-verma-87501a3b5/)
+
+</div>
+
+---
+
+<div align="center">
+
+**Built with curiosity, research and a vision to make information more accessible.**
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:06B6D4,50:2563EB,100:0F172A&height=110&section=footer" width="100%"/>
+
+</div>
